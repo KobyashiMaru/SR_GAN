@@ -26,7 +26,16 @@ First of all, we need shitty images to train SRGAN, so we need to make our high 
 ### 2. SRGAN
 We know that GAN contain 2 neural networks, which is generator and discriminator. In SRGAN, the goal of the generator is to generate HD picture out of a crappy picture. And the discriminator's job is to identify the picture is weather a high resolution images or not, thus the discriminator is basically a binary classifier. 
 
-So Let's talk about the generators first, we use resnet-34 U-Net to do the job.
+#### Generator
+So Let's talk about the generators first, we use Resnet-34 U-Net to do the job. Like we mentioned before, the generator's job is to generate HD images. We use the advantages of U-Net that can output whole image and understand which pixel is which. Thus, we use MSE as loss function to make HD images. 
 
+
+#### Discriminator
+If you think why do we need another neural network model to generate HD images when generator's job is generating HD images itself? That's when you're deadly wrong lol. Yes, generator's job is generating HD images itself, but one neural network is not good enough. We need another model to tell us how the model is performed, that is to say, discriminator is the loss function itself. And like we said, discriminator is a binary classifier with BCE logit loss as loss function, its job is to tell a picture is a HD image or not. 
+
+Thus, as everyone knows, we use these models to train each other. If the generator's perfofrmance is good enough, we shall go ahead and train the discriminator. Vice versa, if discriminator's performance is good enough, we train the generator. Since the computing resource is limited, my shitty laptop cannot handle the power of GAN, I have to train the generator and dicriminator a little bit, separately. This way, both model can understand what their jobs are, then we set up the SRGAN. This can make GAN converge quickly and use less computation resources. 
+
+
+## Put GAN into Production
 
 
