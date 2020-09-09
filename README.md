@@ -35,7 +35,21 @@ If you think why do we need another neural network model to generate HD images w
 
 Thus, as everyone knows, we use these models to train each other. If the generator's perfofrmance is good enough, we shall go ahead and train the discriminator. Vice versa, if discriminator's performance is good enough, we train the generator. Since the computing resource is limited, my shitty laptop cannot handle the power of GAN, I have to train the generator and dicriminator a little bit, separately. This way, both model can understand what their jobs are, then we set up the SRGAN. This can make GAN converge quickly and use less computation resources. 
 
+#### Model Performance
+
+Due to the limited computation resources, I only trained the model for 7 epoches and not full size images(256 \* 256), it's understandable the model had some flaws, but it really did a great job for image restoration.
+
+![Model_Results](https://imgur.com/ZwUVAXI.jpeg)
+
 
 ## Put GAN into Production
+
+So, I have already used my shitty-ass laptop to train my SRGAN model, let's put the model into production. We kew that the model can make some crappy image into high resolution(sort of). Thus, we can clearly restore a shitty video into high resolution one, all we need to do is make video into frames, then take those images through the model, then make those HD frames into a video. I worried that there will be slightly weird between two frames because I make HD frames independently. However, the video look smooth, so I litterally don't have to do anything afterward. The following are one of my final clip.
+
+Original:
+https://youtu.be/anqZrqg6E_Y
+
+HD:
+https://youtu.be/k7woN-cDQc4
 
 
